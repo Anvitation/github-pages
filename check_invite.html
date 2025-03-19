@@ -1,0 +1,26 @@
+<html>
+<head>
+    <script>
+    function checkInvitation() {
+        let name = document.getElementById("guestName").value;
+        if (!name) {
+            document.getElementById("result").innerText = "Please enter your name.";
+            return;
+        }
+        fetch("https://script.google.com/macros/s/AKfycbzoiJr1feO8WVllbt_PEsPV7s2H17v2jkgSekerhDRpXZwlnM7VhChnZGe1fevgIJeYxA/exec?name=" + encodeURIComponent(name))
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("result").innerText = data;
+        })
+        .catch(error => {
+            document.getElementById("result").innerText = "Error checking invitation. Try again later.";
+        });
+    }
+    </script>
+</head>
+<body>
+    <input type="text" id="guestName" placeholder="Enter your name">
+    <button onclick="checkInvitation()">Check Invitation</button>
+    <p id="result"></p>
+</body>
+</html>
